@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>Urban Compass</title>
+
+    <script type="text/javascript" src="lib/d3.js"></script>
+    <script type="text/javascript" src="lib/d3.geo.js"></script>
+    <script type="text/javascript" src="lib/d3.geom.js"></script>
+    <script type="text/javascript" src="lib/jquery-1.7.1.js"></script>
+    <script type="text/javascript" src="lib/jquery-ui-1.8.17.min.js"></script>
+    <script type="text/javascript" src="lib/bootstrap-alert.js"></script>
+    <script type="text/javascript" src="lib/bootstrap-button.js"></script>
+    <script type="text/javascript" src="lib/bootstrap-tooltip.js"></script>
+
+    <link rel="stylesheet" href="resources/css/bootstrap.css" type="text/css" >
+    <link rel="stylesheet" href="resources/css/colorbrewer.css" type="text/css" />
+    <link rel="stylesheet" href="resources/css/jquery-ui-1.8.17.css" type="text/css" />
+
+    <link rel="stylesheet" href="visionyc.css" type="text/css" />
+    <script type="text/javascript" src="visionyc.js"></script>
+  </head>
+  <body>
+    <div class="navbar" id="navigation">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="#"><img width="75" src="resources/images/logo.png"/></a>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2" align="center">
+          <div class="row">
+            <form>
+              <fieldset>
+                <!-- I feel bad about this hack.  Chrome won't do a file dialog
+                     unless it's visible, so I need to make it "hidden" without
+                     actually hiding it :( -->
+                <div class="clearfix">
+                  <input id="dummy-file" type="file" style="position: absolute; top: -50px; z-index: -1" accept="application/json" />
+                </div>
+                <div class="clearfix">
+                  <select id="data-select" disabled="true">
+                    <option value="data/price.json">Pricing Neighbourhoods</option>
+                    <option value="data/trending.json">Trending Neighbourhoods</option>
+                    <option value="data/week1.json">Neighbourhood requests last week</option>
+                    <option value="data/week2.json">Neighbourhood requests 2 weeks ago</option>
+                    <option value="data/week3.json">Neighbourhood requests 3 weeks ago</option>
+                    <option value="data/week4.json">Neighbourhood requests 4 weeks ago</option>
+                    <option value="data/week5.json">Neighbourhood requests 5 weeks ago</option>
+                    <option value="data/week6.json">Neighbourhood requests 6 weeks ago</option>
+                    <option value="data/week7.json">Neighbourhood requests 7 weeks ago</option>
+                    <option value="data/week8.json">Neighbourhood requests 8 weeks ago</option>
+                    <option value="data/week9.json">Neighbourhood requests 9 weeks ago</option>
+                    <option value="data/week10.json">Neighbourhood requests 10 wees ago</option>
+
+                  </select>
+                 <!--  <p class="help-block">You can pick an existing dataset or upload your own</p> -->
+                </div>
+                <div class="clearfix">
+                  <button id="load-button" class="btn btn-primary" type="button" disabled="true">Load</button>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+          <div class="row" style="padding: 10px">
+            <h3>Options</h3>
+            <form>
+              <fieldset>
+                <div class="clearfix">
+                  <p class="help-block">Toggle different features of the data</p>
+                  <select id="feature-types"></select>
+                </div>
+                <div class="clearfix">
+                  <p class="help-block">Colors</p>
+                  <select id="color-types">
+                    <option value="Blues">Blues</option>
+                    <option value="Purples">Purples</option>
+                    <option value="Greens">Greens</option>
+                    <option value="Oranges">Oranges</option>
+                    <option value="Reds">Reds</option>
+                    <option value="Greys">Greys</option>
+                  </select>
+                </div>
+                <div class="clearfix">
+                  <p class="help-block">Quantization Scale</p>
+                  <select id="quantize-types">
+                    <option value="linear">Linear</option>
+                    <option value="log">Logarithmic</option>
+                    <option value="quantile">Quantile</option>
+                    <option value="pow">Square Root</option>
+                  </select>
+                </div>
+                <div class="clearfix">
+                  <p class="help-block">Buckets: <span id="choropleth-count">9</span></p>
+                  <div id="slider"></div>
+                </div>
+                <div class="clearfix">
+                          <div class="row-fluid" id="controls"><br>
+                          <button id="reset-button" class="btn btn-primary" type="button">Reset Zoom and Pan</button>
+
+          </div>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+        <div class="span10">
+          <div class="row-fluid" id="chart"></div>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
